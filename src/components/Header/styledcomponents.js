@@ -8,6 +8,7 @@ export const HeaderContainer = styled.div`
   @media screen and (min-width: 768px) {
     padding: 20px;
   }
+  margin-bottom: 20px;
   background-color: ${props => (props.isDark ? '#181818 ' : '#f9f9f9')};
 `
 export const HeaderLogo = styled.img`
