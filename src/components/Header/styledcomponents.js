@@ -47,3 +47,22 @@ export const LogoutButton = styled.button`
   font-size: 16px;
   font-weight: 600;
 `
+export const IconButton = styled.button`
+  background-color: transparent;
+  border: none;
+  margin: 20px;
+  align-self: flex-end;
+`
+export const MenuPopupMobile = styled.div`
+  height: 100%;
+  width: 100%;
+  background-color: ${props => (props.isDark ? '#181818' : '#f9f9f9')};
+  display: flex;
+  flex-direction: column;
+`
+export const MenuMobileList = styled.div`
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+`

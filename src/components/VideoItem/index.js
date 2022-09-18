@@ -11,6 +11,7 @@ import {
   VideoDetail,
 } from './styledcomponent'
 
+const isDark = false
 const VideoItem = props => {
   const {details} = props
   const {id, channel, publishedAt, thumbnailUrl, title, viewCount} = details
@@ -21,7 +22,7 @@ const VideoItem = props => {
       <VideoInfo>
         <ChannelLogo src={profileImageUrl} alt="channel logo" />
         <AboutVideo>
-          <VideoTitle>{title}</VideoTitle>
+          <VideoTitle isDark={isDark}>{title}</VideoTitle>
           <VideoDetailsContainer>
             <VideoDetail>{name}</VideoDetail>
             <BsDot size="20" color=" #616e7c" />

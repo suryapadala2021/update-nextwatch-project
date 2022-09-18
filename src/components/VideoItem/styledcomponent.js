@@ -24,10 +24,11 @@ export const ChannelLogo = styled.img`
 `
 export const VideoTitle = styled.p`
   font-family: 'Roboto';
-  color: #212121;
-  font-weight: 500;
+  color: ${props => (props.isDark ? '#f1f1f1' : '#212121')};
+  font-size: 14px;
   margin-bottom: 0px;
   margin-top: 5px;
+  line-height: 0.6cm;
 `
 
 export const AboutVideo = styled.div``

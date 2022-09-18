@@ -1,15 +1,22 @@
 import {FaMoon} from 'react-icons/fa'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {FiLogOut, FiSun} from 'react-icons/fi'
+import Popup from 'reactjs-popup'
+import {IoMdClose} from 'react-icons/io'
+import NavigationList from '../NavList'
+import './index.css'
 
 import {
   HeaderContainer,
   HeaderLogo,
-  NavList,
   ClickButton,
   NavItem,
+  NavList,
   ProfileImg,
   LogoutButton,
+  IconButton,
+  MenuPopupMobile,
+  MenuMobileList,
 } from './styledcomponents'
 
 const isDark = false
@@ -36,9 +43,29 @@ const Header = () => (
         </ClickButton>
       </NavItem>
       <NavItem>
-        <ClickButton>
-          <GiHamburgerMenu size="30" color={isDark ? '#f9f9f9' : '#181818'} />
-        </ClickButton>
+        <Popup
+          modal
+          className="popup-content"
+          trigger={
+            <ClickButton>
+              <GiHamburgerMenu
+                size="30"
+                color={isDark ? '#f9f9f9' : '#181818'}
+              />
+            </ClickButton>
+          }
+        >
+          {close => (
+            <MenuPopupMobile isDark={isDark}>
+              <IconButton type="button" onClick={() => close()}>
+                <IoMdClose size={20} color="black" />
+              </IconButton>
+              <MenuMobileList>
+                <NavigationList />
+              </MenuMobileList>
+            </MenuPopupMobile>
+          )}
+        </Popup>
       </NavItem>
       <NavItem>
         <ClickButton>

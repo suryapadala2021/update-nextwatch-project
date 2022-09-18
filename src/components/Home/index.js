@@ -4,6 +4,7 @@ import {AiOutlineClose, AiOutlineSearch} from 'react-icons/ai'
 import Cookies from 'js-cookie'
 
 import Loader from 'react-loader-spinner'
+import SideBar from '../SideBar/index'
 import Header from '../Header'
 import VideoItem from '../VideoItem'
 
@@ -39,9 +40,30 @@ const status = {
 
 const isDark = false
 class Home extends Component {
-  state = {apiStatus: status.loading, search: '', videoList: []}
+  state = {
+    apiStatus: status.loading,
+    search: '',
+    videoList: [],
+    showBanner: true,
+  }
 
   componentDidMount() {
+    this.getHomeVideos()
+  }
+
+  changeSearch = event => {
+    this.setState({search: event.target.value})
+  }
+
+  searching = () => {
+    this.getHomeVideos()
+  }
+
+  closeBanner = () => {
+    this.setState({showBanner: false})
+  }
+
+  retryHome = () => {
     this.getHomeVideos()
   }
 
@@ -75,7 +97,7 @@ class Home extends Component {
       }))
       this.setState({
         videoList: updatedData,
-        apiStatus: status.failure,
+        apiStatus: status.success,
       })
     } else {
       this.setState({
@@ -114,15 +136,19 @@ class Home extends Component {
         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
         alt="failure view"
       />
-      <FailureHeading>Oops! Something Went Wrong</FailureHeading>
+      <FailureHeading isDark={isDark}>
+        Oops! Something Went Wrong
+      </FailureHeading>
       <FailureDescription>
         We are having some trouble to complete your request.please try again.
       </FailureDescription>
-      <FailureButton>Retry</FailureButton>
+      <FailureButton type="button" onClick={this.retryHome}>
+        Retry
+      </FailureButton>
     </FailureContainer>
   )
 
-  renderSuccessView = () => {
+  displayVideoContainer = () => {
     const {videoList} = this.state
     return (
       <HomeVideosContainer>
@@ -133,34 +159,69 @@ class Home extends Component {
     )
   }
 
+  displayEmptyView = () => (
+    <FailureContainer>
+      <FailureImage
+        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+        alt=" no videos"
+      />
+      <FailureHeading isDark={isDark}>No Search results found</FailureHeading>
+      <FailureDescription>
+        Try different key words or remove search filter
+      </FailureDescription>
+      <FailureButton onClick={this.retryHome}>Retry</FailureButton>
+    </FailureContainer>
+  )
+
+  renderSuccessView = () => {
+    const {videoList} = this.state
+    if (videoList.length === 0) {
+      return this.displayEmptyView()
+    }
+    return this.displayVideoContainer()
+  }
+
   render() {
+    const {search, showBanner} = this.state
     return (
-      <HomeContainer data-testid="home">
+      <HomeContainer data-testid="home" isDark={isDark}>
         <ResponsiveHomeContainer>
           <Header />
           <HomeBody>
+            <SideBar isDark={isDark} />
             <HomeContent>
-              <HomeBanner data-testid="banner">
-                <BannerContent>
-                  <BannerImg
-                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                    alt="nxt watch logo"
-                  />
-                  <BannerMatter>
-                    Buy Nxt Watch Premium prepaid plans with UPI
-                  </BannerMatter>
-                  <BannerButton type="button" data-testid="searchButton">
-                    GET IT NOW
-                  </BannerButton>
-                </BannerContent>
-                <BannerCloseBtn type="button">
-                  <AiOutlineClose size="22" />
-                </BannerCloseBtn>
-              </HomeBanner>
+              {showBanner && (
+                <HomeBanner data-testid="banner">
+                  <BannerContent>
+                    <BannerImg
+                      src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                      alt="nxt watch logo"
+                    />
+                    <BannerMatter>
+                      Buy Nxt Watch Premium prepaid plans with UPI
+                    </BannerMatter>
+                    <BannerButton type="button" data-testid="searchButton">
+                      GET IT NOW
+                    </BannerButton>
+                  </BannerContent>
+                  <BannerCloseBtn
+                    type="button"
+                    data-testid="close"
+                    onClick={this.closeBanner}
+                  >
+                    <AiOutlineClose size="22" />
+                  </BannerCloseBtn>
+                </HomeBanner>
+              )}
               <SearchContainer>
-                <Search type="search" placeholder="Search" />
-                <SearchBox>
-                  <SearchButton>
+                <Search
+                  value={search}
+                  type="search"
+                  placeholder="Search"
+                  onChange={this.changeSearch}
+                />
+                <SearchBox isDark={isDark}>
+                  <SearchButton type="button" onClick={this.searching}>
                     <AiOutlineSearch size="22" />
                   </SearchButton>
                 </SearchBox>

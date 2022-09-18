@@ -1,8 +1,21 @@
 import styled from 'styled-components'
 
-export const HomeContainer = styled.div``
+export const HomeContainer = styled.div`
+  background-color: ${props => (props.isDark ? '#181818' : '#f9f9f9 ')};
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+`
 export const Home = styled.p``
-export const ResponsiveHomeContainer = styled.div``
+export const ResponsiveHomeContainer = styled.div`
+  @media screen and (min-width: 768px) {
+    width: 100%;
+    max-width: 1300px;
+  }
+`
 export const HomeBanner = styled.div`
   background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
   background-size: cover;
@@ -11,7 +24,9 @@ export const HomeBanner = styled.div`
   align-items: flex-start;
   padding: 20px;
 `
-export const HomeContent = styled.div``
+export const HomeContent = styled.div`
+  flex-grow: 1;
+`
 export const BannerImg = styled.img`
   height: 40px;
 `
@@ -60,6 +75,8 @@ export const Search = styled.input`
   color: #94a3b8;
   font-size: 18px;
   padding: 5px;
+  outline: none;
+  background-color: transparent;
 `
 export const SearchBox = styled.div`
   width: 70px;
@@ -71,8 +88,13 @@ export const SearchBox = styled.div`
   border-left-color: #94a3b8;
   border-width: 1px;
   height: 100%;
+  background-color: ${props => (props.isDark ? '#212121' : '#e2e8f0')};
 `
-export const HomeBody = styled.div``
+export const HomeBody = styled.div`
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+`
 export const SearchButton = styled.button`
   background-color: transparent;
   border: none;
@@ -103,19 +125,28 @@ export const FailureContainer = styled.div`
 `
 
 export const FailureImage = styled.img`
+  @media screen and (min-width: 768px) {
+    width: 300px;
+  }
   width: 200px;
 `
 
 export const FailureHeading = styled.h1`
   font-family: 'Roboto';
-  color: #181818;
+  color: ${props => (props.isDark ? '#f1f1f1' : '#181818')};
   text-align: center;
   font-size: 20px;
+  @media screen and (min-width: 768px) {
+    font-size: 30px;
+  }
 `
 export const FailureDescription = styled.p`
   font-family: 'Roboto';
   color: #475569;
   text-align: center;
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+  }
 `
 export const FailureButton = styled.button`
   border: none;
