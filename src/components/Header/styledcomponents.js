@@ -9,7 +9,7 @@ export const HeaderContainer = styled.div`
     padding: 20px;
   }
   margin-bottom: 20px;
-  background-color: ${props => (props.isDark ? '#181818 ' : '#f9f9f9')};
+  background-color: transparent;
 `
 export const HeaderLogo = styled.img`
   height: 30px;

@@ -3,19 +3,31 @@ import styled from 'styled-components'
 export const VideoItemCard = styled.li`
   margin-bottom: 20px;
   @media screen and (min-width: 768px) {
-    width: 300px;
+    width: ${props => (props.trending ? '100%' : '300px')};
     margin: 10px;
+  }
+  @media screen and (min-width: 576px) {
+    display: ${props => (props.trending ? 'flex' : '')};
+    justify-content: ${props => (props.trending ? 'flex-start' : '')};
+    align-items: ${props => (props.trending ? 'flex-start' : '')};
   }
 `
 export const VideoThumbnail = styled.img`
   width: 100%;
   margin-bottom: 5px;
+  @media screen and (min-width: 576px) {
+    width: ${props => (props.trending ? '320px' : '')};
+    margin: ${props => (props.trending ? '10px' : '')};
+  }
 `
 export const VideoInfo = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   padding: 5px;
+  @media screen and (min-width: 576px) {
+    flex-grow: ${props => (props.trending ? '1' : '')};
+  }
 `
 export const ChannelLogo = styled.img`
   height: 30px;

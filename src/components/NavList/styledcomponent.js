@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
 export const SideBarNavList = styled.ul`
   padding-left: 0px;
@@ -38,4 +39,7 @@ export const SideNavItemName = styled.p`
     return '#383838'
   }};
   font-weight: ${props => (props.isActive ? '600' : '')};
+`
+export const Linker = styled(Link)`
+  text-decoration: none;
 `

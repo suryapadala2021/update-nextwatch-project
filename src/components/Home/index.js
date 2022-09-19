@@ -1,12 +1,12 @@
 import {Component} from 'react'
 import {AiOutlineClose, AiOutlineSearch} from 'react-icons/ai'
-
 import Cookies from 'js-cookie'
+import LoaderComponent from '../LoaderContainer'
 
-import Loader from 'react-loader-spinner'
 import SideBar from '../SideBar/index'
 import Header from '../Header'
 import VideoItem from '../VideoItem'
+import FailureComponent from '../FailureView'
 
 import {
   HomeContainer,
@@ -19,17 +19,11 @@ import {
   BannerContent,
   BannerCloseBtn,
   SearchContainer,
-  FailureContainer,
   Search,
   SearchBox,
   HomeBody,
   SearchButton,
-  LoaderContainer,
   HomeVideosContainer,
-  FailureImage,
-  FailureHeading,
-  FailureDescription,
-  FailureButton,
 } from './styledcomponents'
 
 const status = {
@@ -119,33 +113,10 @@ class Home extends Component {
     }
   }
 
-  renderLoadingView = () => (
-    <LoaderContainer className="loader-container" data-testid="loader">
-      <Loader
-        type="ThreeDots"
-        color={isDark ? '#f9f9f9' : '#0f0f0f'}
-        height="50"
-        width="50"
-      />
-    </LoaderContainer>
-  )
+  renderLoadingView = () => <LoaderComponent />
 
   renderFailureView = () => (
-    <FailureContainer>
-      <FailureImage
-        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
-        alt="failure view"
-      />
-      <FailureHeading isDark={isDark}>
-        Oops! Something Went Wrong
-      </FailureHeading>
-      <FailureDescription>
-        We are having some trouble to complete your request.please try again.
-      </FailureDescription>
-      <FailureButton type="button" onClick={this.retryHome}>
-        Retry
-      </FailureButton>
-    </FailureContainer>
+    <FailureComponent callFunction={this.retryHome} isFailureView />
   )
 
   displayVideoContainer = () => {
@@ -159,19 +130,7 @@ class Home extends Component {
     )
   }
 
-  displayEmptyView = () => (
-    <FailureContainer>
-      <FailureImage
-        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
-        alt=" no videos"
-      />
-      <FailureHeading isDark={isDark}>No Search results found</FailureHeading>
-      <FailureDescription>
-        Try different key words or remove search filter
-      </FailureDescription>
-      <FailureButton onClick={this.retryHome}>Retry</FailureButton>
-    </FailureContainer>
-  )
+  displayEmptyView = () => <FailureComponent callFunction={this.retryHome} />
 
   renderSuccessView = () => {
     const {videoList} = this.state

@@ -1,39 +1,44 @@
-import {AiFillFire} from 'react-icons/ai'
 import {Component} from 'react'
+import {AiFillHeart} from 'react-icons/ai'
 import Cookies from 'js-cookie'
-import SideBar from '../SideBar/index'
+import Header from '../Header'
+import SideBar from '../SideBar'
 import LoaderComponent from '../LoaderContainer'
-import VideoItem from '../VideoItem'
+import GameVideoItem from '../GamingVideoItem'
 import FailureComponent from '../FailureView'
 
 import {
-  TrendingContainer,
-  ResponsiveTrendingContainer,
-  TredingBody,
-  TrendingContent,
+  GameContainer,
+  ResponsiveGameContainer,
+  GamingBody,
+  GamingVideosList,
+  GamingContent,
+} from './styledcomponents'
+
+import {
   TrendingBanner,
   TrendingBannerIconBox,
   TrendingBannerHeading,
-  TrendingVideosList,
-} from './styledcomponents'
-import Header from '../Header'
+} from '../Trending/styledcomponents'
+import VideoItem from '../VideoItem'
 
+const isDark = false
 const status = {
   loading: 'LOADING',
   success: 'SUCCESS',
   failure: 'FAILURE',
 }
-const isDark = false
-class Trending extends Component {
+
+class Gaming extends Component {
   state = {apiStatus: status.loading, videosList: []}
 
   componentDidMount() {
-    this.getTrendingVideos()
+    this.getGamingVideos()
   }
 
-  getTrendingVideos = async () => {
+  getGamingVideos = async () => {
     this.setState({apiStatus: status.loading})
-    const url = 'https://apis.ccbp.in/videos/trending'
+    const url = 'https://apis.ccbp.in/videos/gaming'
     const jwtToken = Cookies.get('jwt_token')
 
     const options = {
@@ -47,11 +52,6 @@ class Trending extends Component {
     if (response.ok === true) {
       const updatedData = data.videos.map(eachItem => ({
         id: eachItem.id,
-        channel: {
-          name: eachItem.channel.name,
-          profileImageUrl: eachItem.channel.profile_image_url,
-        },
-        publishedAt: eachItem.published_at,
         thumbnailUrl: eachItem.thumbnail_url,
         title: eachItem.title,
         viewCount: eachItem.view_count,
@@ -80,50 +80,49 @@ class Trending extends Component {
     }
   }
 
+  retryGaming = () => {
+    this.getGamingVideos()
+  }
+
   renderLoadingView = () => <LoaderComponent />
 
   renderSuccessView = () => {
     const {videosList} = this.state
     return (
-      <TrendingVideosList>
+      <GamingVideosList>
         {videosList.map(each => (
-          <VideoItem trending key={each.id} details={each} />
+          <GameVideoItem key={each.id} details={each} />
         ))}
-      </TrendingVideosList>
+      </GamingVideosList>
     )
   }
 
   renderFailureView = () => (
-    <FailureComponent isFailureView callFunction={this.reloadTreding} />
+    <FailureComponent callFunction={this.retryGaming} isFailureView />
   )
-
-  reloadTreding = () => {
-    this.getTrendingVideos()
-  }
 
   render() {
     return (
-      <TrendingContainer data-testid="trending" isDark={isDark}>
-        <ResponsiveTrendingContainer>
+      <GameContainer data-testid="gaming" isDark={isDark}>
+        <ResponsiveGameContainer>
           <Header />
-          <TredingBody>
+          <GamingBody>
             <SideBar />
-            <TrendingContent>
+            <GamingContent>
               <TrendingBanner isDark={isDark} data-testid="banner">
                 <TrendingBannerIconBox isDark={isDark}>
-                  <AiFillFire size="30" color="red" />
+                  <AiFillHeart size="30" color="red" />
                 </TrendingBannerIconBox>
                 <TrendingBannerHeading isDark={isDark}>
-                  Trending
+                  Gaming
                 </TrendingBannerHeading>
               </TrendingBanner>
               {this.display()}
-            </TrendingContent>
-          </TredingBody>
-        </ResponsiveTrendingContainer>
-      </TrendingContainer>
+            </GamingContent>
+          </GamingBody>
+        </ResponsiveGameContainer>
+      </GameContainer>
     )
   }
 }
-
-export default Trending
+export default Gaming

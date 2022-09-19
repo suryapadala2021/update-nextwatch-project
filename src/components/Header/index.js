@@ -5,6 +5,7 @@ import Popup from 'reactjs-popup'
 import {IoMdClose} from 'react-icons/io'
 import NavigationList from '../NavList'
 import './index.css'
+import {Linker} from '../NavList/styledcomponent'
 
 import {
   HeaderContainer,
@@ -22,19 +23,21 @@ import {
 const isDark = false
 
 const Header = () => (
-  <HeaderContainer isDark={isDark}>
-    {!isDark && (
-      <HeaderLogo
-        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-        alt="website logo"
-      />
-    )}
-    {isDark && (
-      <HeaderLogo
-        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
-        alt="website logo"
-      />
-    )}
+  <HeaderContainer>
+    <Linker to="/">
+      {!isDark && (
+        <HeaderLogo
+          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+          alt="website logo"
+        />
+      )}
+      {isDark && (
+        <HeaderLogo
+          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
+          alt="website logo"
+        />
+      )}
+    </Linker>
     <NavList small>
       <NavItem>
         <ClickButton data-testid="theme">

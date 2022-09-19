@@ -95,9 +95,12 @@ class Login extends Component {
               />
             )}
             <InputBox>
-              <Label isDark={isDark}>USERNAME</Label>
+              <Label htmlFor="username" isDark={isDark}>
+                USERNAME
+              </Label>
               <br />
               <Input
+                id="username"
                 value={username}
                 onChange={this.enteringUsername}
                 isDark={isDark}
@@ -106,9 +109,12 @@ class Login extends Component {
               />
             </InputBox>
             <InputBox>
-              <Label isDark={isDark}>PASSWORD</Label>
+              <Label htmlFor="password" isDark={isDark}>
+                PASSWORD
+              </Label>
               <br />
               <Input
+                id="password"
                 value={password}
                 onChange={this.enteringPassword}
                 isDark={isDark}
@@ -117,8 +123,14 @@ class Login extends Component {
               />
             </InputBox>
             <InputBoxShowPass>
-              <InputCheck type="checkbox" onChange={this.showPassword} />
-              <LabelPass isDark={isDark}>Show Password</LabelPass>
+              <InputCheck
+                id="showPass"
+                type="checkbox"
+                onChange={this.showPassword}
+              />
+              <LabelPass htmlFor="showPass" isDark={isDark}>
+                Show Password
+              </LabelPass>
             </InputBoxShowPass>
             <LoginButton type="submit">Login</LoginButton>
             {!responseStatus && <Error>*{msg}</Error>}

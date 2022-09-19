@@ -85,6 +85,7 @@ export const LoginButton = styled.button`
   @media screen and (min-width: 768px) {
     height: 55px;
   }
+  color: #ffffff;
 `
 export const Error = styled.p`
   font-family: 'Roboto';

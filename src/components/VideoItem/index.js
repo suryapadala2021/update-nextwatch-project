@@ -13,13 +13,17 @@ import {
 
 const isDark = false
 const VideoItem = props => {
-  const {details} = props
+  const {details, trending} = props
   const {id, channel, publishedAt, thumbnailUrl, title, viewCount} = details
   const {name, profileImageUrl} = channel
   return (
-    <VideoItemCard>
-      <VideoThumbnail src={thumbnailUrl} alt="video thumbnail" />
-      <VideoInfo>
+    <VideoItemCard trending={trending}>
+      <VideoThumbnail
+        trending={trending}
+        src={thumbnailUrl}
+        alt="video thumbnail"
+      />
+      <VideoInfo isDark={isDark}>
         <ChannelLogo src={profileImageUrl} alt="channel logo" />
         <AboutVideo>
           <VideoTitle isDark={isDark}>{title}</VideoTitle>
