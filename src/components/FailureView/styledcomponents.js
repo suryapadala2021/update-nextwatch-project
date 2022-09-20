@@ -32,6 +32,7 @@ export const FailureDescription = styled.p`
   }
 `
 export const FailureButton = styled.button`
+  display: ${props => (props.saved ? 'none' : 'inline')};
   border: none;
   font-family: 'Roboto';
   color: white;

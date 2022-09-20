@@ -17,7 +17,8 @@ import {
   Error,
 } from './styledcomponents'
 
-const isDark = false
+import NxtWatchContext from '../../context/NxtContext'
+
 class Login extends Component {
   state = {
     username: '',
@@ -79,64 +80,71 @@ class Login extends Component {
     }
     const {username, password, showPass, responseStatus, msg} = this.state
     return (
-      <LoginContainer isDark={isDark}>
-        <LoginBox isDark={isDark}>
-          <LoginForm onSubmit={this.login}>
-            {!isDark && (
-              <LoginWebsiteIcon
-                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                alt="website logo"
-              />
-            )}
-            {isDark && (
-              <LoginWebsiteIcon
-                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
-                alt="website logo"
-              />
-            )}
-            <InputBox>
-              <Label htmlFor="username" isDark={isDark}>
-                USERNAME
-              </Label>
-              <br />
-              <Input
-                id="username"
-                value={username}
-                onChange={this.enteringUsername}
-                isDark={isDark}
-                type="text"
-                placeholder="Username"
-              />
-            </InputBox>
-            <InputBox>
-              <Label htmlFor="password" isDark={isDark}>
-                PASSWORD
-              </Label>
-              <br />
-              <Input
-                id="password"
-                value={password}
-                onChange={this.enteringPassword}
-                isDark={isDark}
-                type={showPass ? 'text' : 'password'}
-                placeholder="Password"
-              />
-            </InputBox>
-            <InputBoxShowPass>
-              <InputCheck
-                id="showPass"
-                type="checkbox"
-                onChange={this.showPassword}
-              />
-              <LabelPass htmlFor="showPass" isDark={isDark}>
-                Show Password
-              </LabelPass>
-            </InputBoxShowPass>
-            <LoginButton type="submit">Login</LoginButton>
-            {!responseStatus && <Error>*{msg}</Error>}
-          </LoginForm>
-        </LoginBox>
-      </LoginContainer>
+      <NxtWatchContext.Consumer>
+        {value => {
+          const {isDark} = value
+          return (
+            <LoginContainer isDark={isDark}>
+              <LoginBox isDark={isDark}>
+                <LoginForm onSubmit={this.login}>
+                  {!isDark && (
+                    <LoginWebsiteIcon
+                      src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                      alt="website logo"
+                    />
+                  )}
+                  {isDark && (
+                    <LoginWebsiteIcon
+                      src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
+                      alt="website logo"
+                    />
+                  )}
+                  <InputBox>
+                    <Label htmlFor="username" isDark={isDark}>
+                      USERNAME
+                    </Label>
+                    <br />
+                    <Input
+                      id="username"
+                      value={username}
+                      onChange={this.enteringUsername}
+                      isDark={isDark}
+                      type="text"
+                      placeholder="Username"
+                    />
+                  </InputBox>
+                  <InputBox>
+                    <Label htmlFor="password" isDark={isDark}>
+                      PASSWORD
+                    </Label>
+                    <br />
+                    <Input
+                      id="password"
+                      value={password}
+                      onChange={this.enteringPassword}
+                      isDark={isDark}
+                      type={showPass ? 'text' : 'password'}
+                      placeholder="Password"
+                    />
+                  </InputBox>
+                  <InputBoxShowPass>
+                    <InputCheck
+                      id="showPass"
+                      type="checkbox"
+                      onChange={this.showPassword}
+                    />
+                    <LabelPass htmlFor="showPass" isDark={isDark}>
+                      Show Password
+                    </LabelPass>
+                  </InputBoxShowPass>
+                  <LoginButton type="submit">Login</LoginButton>
+                  {!responseStatus && <Error>*{msg}</Error>}
+                </LoginForm>
+              </LoginBox>
+            </LoginContainer>
+          )
+        }}
+      </NxtWatchContext.Consumer>
     )
   }
 }

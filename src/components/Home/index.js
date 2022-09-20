@@ -7,7 +7,7 @@ import SideBar from '../SideBar/index'
 import Header from '../Header'
 import VideoItem from '../VideoItem'
 import FailureComponent from '../FailureView'
-
+import NxtWatchContext from '../../context/NxtContext'
 import {
   HomeContainer,
   ResponsiveHomeContainer,
@@ -32,7 +32,6 @@ const status = {
   failure: 'FAILURE',
 }
 
-const isDark = false
 class Home extends Component {
   state = {
     apiStatus: status.loading,
@@ -143,53 +142,64 @@ class Home extends Component {
   render() {
     const {search, showBanner} = this.state
     return (
-      <HomeContainer data-testid="home" isDark={isDark}>
-        <ResponsiveHomeContainer>
-          <Header />
-          <HomeBody>
-            <SideBar isDark={isDark} />
-            <HomeContent>
-              {showBanner && (
-                <HomeBanner data-testid="banner">
-                  <BannerContent>
-                    <BannerImg
-                      src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                      alt="nxt watch logo"
-                    />
-                    <BannerMatter>
-                      Buy Nxt Watch Premium prepaid plans with UPI
-                    </BannerMatter>
-                    <BannerButton type="button" data-testid="searchButton">
-                      GET IT NOW
-                    </BannerButton>
-                  </BannerContent>
-                  <BannerCloseBtn
-                    type="button"
-                    data-testid="close"
-                    onClick={this.closeBanner}
-                  >
-                    <AiOutlineClose size="22" />
-                  </BannerCloseBtn>
-                </HomeBanner>
-              )}
-              <SearchContainer>
-                <Search
-                  value={search}
-                  type="search"
-                  placeholder="Search"
-                  onChange={this.changeSearch}
-                />
-                <SearchBox isDark={isDark}>
-                  <SearchButton type="button" onClick={this.searching}>
-                    <AiOutlineSearch size="22" />
-                  </SearchButton>
-                </SearchBox>
-              </SearchContainer>
-              {this.display()}
-            </HomeContent>
-          </HomeBody>
-        </ResponsiveHomeContainer>
-      </HomeContainer>
+      <NxtWatchContext.Consumer>
+        {value => {
+          const {isDark} = value
+
+          return (
+            <HomeContainer data-testid="home" isDark={isDark}>
+              <ResponsiveHomeContainer>
+                <Header />
+                <HomeBody>
+                  <SideBar isDark={isDark} />
+                  <HomeContent>
+                    {showBanner && (
+                      <HomeBanner data-testid="banner">
+                        <BannerContent>
+                          <BannerImg
+                            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                            alt="nxt watch logo"
+                          />
+                          <BannerMatter>
+                            Buy Nxt Watch Premium prepaid plans with UPI
+                          </BannerMatter>
+                          <BannerButton
+                            type="button"
+                            data-testid="searchButton"
+                          >
+                            GET IT NOW
+                          </BannerButton>
+                        </BannerContent>
+                        <BannerCloseBtn
+                          type="button"
+                          data-testid="close"
+                          onClick={this.closeBanner}
+                        >
+                          <AiOutlineClose size="22" />
+                        </BannerCloseBtn>
+                      </HomeBanner>
+                    )}
+                    <SearchContainer>
+                      <Search
+                        value={search}
+                        type="search"
+                        placeholder="Search"
+                        onChange={this.changeSearch}
+                      />
+                      <SearchBox isDark={isDark}>
+                        <SearchButton type="button" onClick={this.searching}>
+                          <AiOutlineSearch size="22" />
+                        </SearchButton>
+                      </SearchBox>
+                    </SearchContainer>
+                    {this.display()}
+                  </HomeContent>
+                </HomeBody>
+              </ResponsiveHomeContainer>
+            </HomeContainer>
+          )
+        }}
+      </NxtWatchContext.Consumer>
     )
   }
 }

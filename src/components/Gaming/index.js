@@ -6,6 +6,7 @@ import SideBar from '../SideBar'
 import LoaderComponent from '../LoaderContainer'
 import GameVideoItem from '../GamingVideoItem'
 import FailureComponent from '../FailureView'
+import NxtWatchContext from '../../context/NxtContext'
 
 import {
   GameContainer,
@@ -22,7 +23,6 @@ import {
 } from '../Trending/styledcomponents'
 import VideoItem from '../VideoItem'
 
-const isDark = false
 const status = {
   loading: 'LOADING',
   success: 'SUCCESS',
@@ -103,25 +103,33 @@ class Gaming extends Component {
 
   render() {
     return (
-      <GameContainer data-testid="gaming" isDark={isDark}>
-        <ResponsiveGameContainer>
-          <Header />
-          <GamingBody>
-            <SideBar />
-            <GamingContent>
-              <TrendingBanner isDark={isDark} data-testid="banner">
-                <TrendingBannerIconBox isDark={isDark}>
-                  <AiFillHeart size="30" color="red" />
-                </TrendingBannerIconBox>
-                <TrendingBannerHeading isDark={isDark}>
-                  Gaming
-                </TrendingBannerHeading>
-              </TrendingBanner>
-              {this.display()}
-            </GamingContent>
-          </GamingBody>
-        </ResponsiveGameContainer>
-      </GameContainer>
+      <NxtWatchContext.Consumer>
+        {value => {
+          const {isDark} = value
+
+          return (
+            <GameContainer data-testid="gaming" isDark={isDark}>
+              <ResponsiveGameContainer>
+                <Header />
+                <GamingBody>
+                  <SideBar />
+                  <GamingContent>
+                    <TrendingBanner isDark={isDark} data-testid="banner">
+                      <TrendingBannerIconBox isDark={isDark}>
+                        <AiFillHeart size="30" color="red" />
+                      </TrendingBannerIconBox>
+                      <TrendingBannerHeading isDark={isDark}>
+                        Gaming
+                      </TrendingBannerHeading>
+                    </TrendingBanner>
+                    {this.display()}
+                  </GamingContent>
+                </GamingBody>
+              </ResponsiveGameContainer>
+            </GameContainer>
+          )
+        }}
+      </NxtWatchContext.Consumer>
     )
   }
 }

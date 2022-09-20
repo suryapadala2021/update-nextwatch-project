@@ -13,6 +13,7 @@ export const SideContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-color: ${props => (props.isDark ? '#231f20' : '')};
   }
 `
 

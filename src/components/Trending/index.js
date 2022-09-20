@@ -5,6 +5,7 @@ import SideBar from '../SideBar/index'
 import LoaderComponent from '../LoaderContainer'
 import VideoItem from '../VideoItem'
 import FailureComponent from '../FailureView'
+import NxtWatchContext from '../../context/NxtContext'
 
 import {
   TrendingContainer,
@@ -23,7 +24,6 @@ const status = {
   success: 'SUCCESS',
   failure: 'FAILURE',
 }
-const isDark = false
 class Trending extends Component {
   state = {apiStatus: status.loading, videosList: []}
 
@@ -103,25 +103,32 @@ class Trending extends Component {
 
   render() {
     return (
-      <TrendingContainer data-testid="trending" isDark={isDark}>
-        <ResponsiveTrendingContainer>
-          <Header />
-          <TredingBody>
-            <SideBar />
-            <TrendingContent>
-              <TrendingBanner isDark={isDark} data-testid="banner">
-                <TrendingBannerIconBox isDark={isDark}>
-                  <AiFillFire size="30" color="red" />
-                </TrendingBannerIconBox>
-                <TrendingBannerHeading isDark={isDark}>
-                  Trending
-                </TrendingBannerHeading>
-              </TrendingBanner>
-              {this.display()}
-            </TrendingContent>
-          </TredingBody>
-        </ResponsiveTrendingContainer>
-      </TrendingContainer>
+      <NxtWatchContext.Consumer>
+        {value => {
+          const {isDark} = value
+          return (
+            <TrendingContainer data-testid="trending" isDark={isDark}>
+              <ResponsiveTrendingContainer>
+                <Header />
+                <TredingBody>
+                  <SideBar />
+                  <TrendingContent>
+                    <TrendingBanner isDark={isDark} data-testid="banner">
+                      <TrendingBannerIconBox isDark={isDark}>
+                        <AiFillFire size="30" color="red" />
+                      </TrendingBannerIconBox>
+                      <TrendingBannerHeading isDark={isDark}>
+                        Trending
+                      </TrendingBannerHeading>
+                    </TrendingBanner>
+                    {this.display()}
+                  </TrendingContent>
+                </TredingBody>
+              </ResponsiveTrendingContainer>
+            </TrendingContainer>
+          )
+        }}
+      </NxtWatchContext.Consumer>
     )
   }
 }

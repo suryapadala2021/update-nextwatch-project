@@ -8,8 +8,8 @@ export const HeaderContainer = styled.div`
   @media screen and (min-width: 768px) {
     padding: 20px;
   }
-  margin-bottom: 20px;
-  background-color: transparent;
+
+  background-color: ${props => (props.isDark ? '#231f20' : 'transparent')}; ;
 `
 export const HeaderLogo = styled.img`
   height: 30px;
