@@ -1,13 +1,21 @@
 import {Component} from 'react'
 import {AiOutlineClose, AiOutlineSearch} from 'react-icons/ai'
+import {BsSearch} from 'react-icons/bs'
 import Cookies from 'js-cookie'
 import LoaderComponent from '../LoaderContainer'
 
 import SideBar from '../SideBar/index'
 import Header from '../Header'
 import VideoItem from '../VideoItem'
-import FailureComponent from '../FailureView'
+
 import NxtWatchContext from '../../context/NxtContext'
+import {
+  FailureButton,
+  FailureContainer,
+  FailureDescription,
+  FailureHeading,
+  FailureImage,
+} from '../FailureView/styledcomponents'
 import {
   HomeContainer,
   ResponsiveHomeContainer,
@@ -19,11 +27,12 @@ import {
   BannerContent,
   BannerCloseBtn,
   SearchContainer,
-  Search,
-  SearchBox,
+  SearchInput,
   HomeBody,
   SearchButton,
   HomeVideosContainer,
+  FailureHomeButton,
+  RetryButton,
 } from './styledcomponents'
 
 const status = {
@@ -54,10 +63,6 @@ class Home extends Component {
 
   closeBanner = () => {
     this.setState({showBanner: false})
-  }
-
-  retryHome = () => {
-    this.getHomeVideos()
   }
 
   getHomeVideos = async () => {
@@ -115,7 +120,29 @@ class Home extends Component {
   renderLoadingView = () => <LoaderComponent />
 
   renderFailureView = () => (
-    <FailureComponent callFunction={this.retryHome} isFailureView />
+    <NxtWatchContext.Consumer>
+      {value => {
+        const {isDark} = value
+        const imgSrc = isDark
+          ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+          : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+        return (
+          <FailureContainer>
+            {!isDark && <FailureImage src={imgSrc} alt="failure view" />}
+            <FailureHeading isDark={isDark}>
+              Oops! Something Went Wrong
+            </FailureHeading>
+            <FailureDescription>
+              We are having some trouble to complete your request. Please try
+              again
+            </FailureDescription>
+            <RetryButton type="button" onClick={this.getHomeVideos}>
+              Retry
+            </RetryButton>
+          </FailureContainer>
+        )
+      }}
+    </NxtWatchContext.Consumer>
   )
 
   displayVideoContainer = () => {
@@ -129,7 +156,30 @@ class Home extends Component {
     )
   }
 
-  displayEmptyView = () => <FailureComponent callFunction={this.retryHome} />
+  displayEmptyView = () => (
+    <NxtWatchContext.Consumer>
+      {value => {
+        const {isDark} = value
+        return (
+          <FailureContainer>
+            <FailureImage
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+              alt="no videos"
+            />
+            <FailureHeading isDark={isDark}>
+              No Search results found
+            </FailureHeading>
+            <FailureDescription>
+              Try different key words or remove search filter
+            </FailureDescription>
+            <FailureHomeButton type="button" onClick={this.getHomeVideos}>
+              Retry
+            </FailureHomeButton>
+          </FailureContainer>
+        )
+      }}
+    </NxtWatchContext.Consumer>
+  )
 
   renderSuccessView = () => {
     const {videoList} = this.state
@@ -145,7 +195,7 @@ class Home extends Component {
       <NxtWatchContext.Consumer>
         {value => {
           const {isDark} = value
-
+          const color = isDark ? '#f9f9f9' : '#181818'
           return (
             <HomeContainer data-testid="home" isDark={isDark}>
               <ResponsiveHomeContainer>
@@ -180,17 +230,21 @@ class Home extends Component {
                       </HomeBanner>
                     )}
                     <SearchContainer>
-                      <Search
+                      <SearchInput
+                        isDark={isDark}
                         value={search}
                         type="search"
                         placeholder="Search"
                         onChange={this.changeSearch}
                       />
-                      <SearchBox isDark={isDark}>
-                        <SearchButton type="button" onClick={this.searching}>
-                          <AiOutlineSearch size="22" />
-                        </SearchButton>
-                      </SearchBox>
+                      <SearchButton
+                        type="button"
+                        onClick={this.getHomeVideos}
+                        data-testid="searchButton"
+                        isDark={isDark}
+                      >
+                        <BsSearch color={color} />
+                      </SearchButton>
                     </SearchContainer>
                     {this.display()}
                   </HomeContent>

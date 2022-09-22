@@ -38,7 +38,7 @@ const SavedVideosRoute = () => (
       }
 
       return (
-        <TrendingContainer isDark={isDark}>
+        <TrendingContainer isDark={isDark} data-testid="savedVideos">
           <ResponsiveTrendingContainer>
             <Header />
             <TredingBody>

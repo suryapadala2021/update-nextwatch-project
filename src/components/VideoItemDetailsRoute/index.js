@@ -8,7 +8,7 @@ import {BiListPlus} from 'react-icons/bi'
 
 import SideBar from '../SideBar'
 import LoadingComponent from '../LoaderContainer'
-import FailureComponent from '../FailureView'
+
 import NxtWatchContext from '../../context/NxtContext'
 import {
   ChannelInfoBox,
@@ -27,6 +27,14 @@ import {
   VideoItemDetailsTextContainer,
   ChannelSubscribers,
 } from './styledcomponents'
+
+import {
+  FailureButton,
+  FailureContainer,
+  FailureDescription,
+  FailureHeading,
+  FailureImage,
+} from '../FailureView/styledcomponents'
 
 import {
   ResponsiveTrendingContainer,
@@ -53,7 +61,6 @@ class VideoItemDetailsRoute extends Component {
     apiStatus: status.loading,
     videoDetails: {},
     videoSta: videoStatus.initial,
-    saveButtonActive: false,
   }
 
   componentDidMount() {
@@ -135,7 +142,7 @@ class VideoItemDetailsRoute extends Component {
   renderLoadingView = () => <LoadingComponent />
 
   renderSuccessView = () => {
-    const {videoDetails, videoSta, saveButtonActive} = this.state
+    const {videoDetails, videoSta} = this.state
     console.log(videoSta)
     const {
       publishedAt,
@@ -156,9 +163,9 @@ class VideoItemDetailsRoute extends Component {
     return (
       <NxtWatchContext.Consumer>
         {value => {
-          const {isDark, addToSavedVideos} = value
+          const {isDark, addToSavedVideos, savedVideos} = value
+          const isSaved = savedVideos.find(each => each.id === videoDetails.id)
           const saveButtonStatus = () => {
-            this.setState({saveButtonActive: !saveButtonActive})
             addToSavedVideos(videoDetails)
           }
           return (
@@ -185,9 +192,7 @@ class VideoItemDetailsRoute extends Component {
                     }}
                     isActive={videoSta === videoStatus.like}
                   >
-                    <LikeContainer>
-                      <AiOutlineLike size="26" /> <LikeText>Like</LikeText>
-                    </LikeContainer>
+                    <AiOutlineLike size="26" /> Like
                   </LikeAndDislikeBtn>
                   <LikeAndDislikeBtn
                     onClick={() => {
@@ -195,17 +200,17 @@ class VideoItemDetailsRoute extends Component {
                     }}
                     isActive={videoSta === videoStatus.dislike}
                   >
-                    <LikeContainer>
-                      <AiOutlineDislike size="24" />{' '}
-                      <LikeText>DisLike</LikeText>
-                    </LikeContainer>
+                    <AiOutlineDislike size="24" /> DisLike
                   </LikeAndDislikeBtn>
                   <LikeAndDislikeBtn
-                    isActive={saveButtonActive}
+                    isActive={isSaved !== undefined}
                     onClick={saveButtonStatus}
                   >
                     <LikeContainer>
-                      <BiListPlus size="26" /> <LikeText>Save</LikeText>
+                      <BiListPlus size="26" />{' '}
+                      <LikeText>
+                        {isSaved !== undefined ? 'saved' : 'Save'}
+                      </LikeText>
                     </LikeContainer>
                   </LikeAndDislikeBtn>
                 </LikeAndDislikeBox>
@@ -231,7 +236,29 @@ class VideoItemDetailsRoute extends Component {
   }
 
   renderFailureView = () => (
-    <FailureComponent callFunction={this.retryVideoDetails} isFailureView />
+    <NxtWatchContext.Consumer>
+      {value => {
+        const {isDark} = value
+        const imgUrl = isDark
+          ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+          : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+        return (
+          <FailureContainer>
+            <FailureImage src={imgUrl} alt="failure view" />
+            <FailureHeading isDark={isDark}>
+              Oops! Something Went Wrong
+            </FailureHeading>
+            <FailureDescription>
+              We are having some trouble to complete your request. Please try
+              again.
+            </FailureDescription>
+            <FailureButton type="button" onClick={this.getVideoDetails}>
+              Retry
+            </FailureButton>
+          </FailureContainer>
+        )
+      }}
+    </NxtWatchContext.Consumer>
   )
 
   render() {

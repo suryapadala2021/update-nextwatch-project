@@ -32,6 +32,8 @@ export const LikeAndDislikeBtn = styled.button`
   border: none;
   margin-right: 15px;
   color: ${props => (props.isActive ? '#2563eb' : '#64748b')};
+  display: inline-flex;
+  align-items: center;
 `
 export const LikeContainer = styled.div`
   display: flex;

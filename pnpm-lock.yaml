@@ -2243,7 +2243,7 @@ packages:
       babel-plugin-polyfill-corejs2: 0.3.3_@babel+core@7.12.3
       babel-plugin-polyfill-corejs3: 0.6.0_@babel+core@7.12.3
       babel-plugin-polyfill-regenerator: 0.4.1_@babel+core@7.12.3
-      core-js-compat: 3.25.1
+      core-js-compat: 3.25.2
       semver: 6.3.0
     dev: true
     engines:
@@ -2328,7 +2328,7 @@ packages:
       babel-plugin-polyfill-corejs2: 0.3.3_@babel+core@7.19.1
       babel-plugin-polyfill-corejs3: 0.6.0_@babel+core@7.19.1
       babel-plugin-polyfill-regenerator: 0.4.1_@babel+core@7.19.1
-      core-js-compat: 3.25.1
+      core-js-compat: 3.25.2
       semver: 6.3.0
     dev: true
     engines:
@@ -2410,7 +2410,7 @@ packages:
       integrity: sha512-s9ik86kXBAnD760aybBucdpnLsAt0jK1xqJn2juOn9lkOvSHV60os5hxoVJsPzMQxvnUJFAlkont2DvvaYEBtQ==
   /@babel/runtime-corejs3/7.19.1:
     dependencies:
-      core-js-pure: 3.25.1
+      core-js-pure: 3.25.2
       regenerator-runtime: 0.13.9
     engines:
       node: '>=6.9.0'
@@ -2743,7 +2743,7 @@ packages:
       integrity: sha512-h2bW53APG4HvkOnVMo8q3QXa6pcaNt1HkwVsOPMBV6LD/q9oSpxNSYZQYkAnjdMjrJ86UuYeLo+aEZClV6opnw==
   /@jest/schemas/29.0.0:
     dependencies:
-      '@sinclair/typebox': 0.24.41
+      '@sinclair/typebox': 0.24.42
     dev: false
     engines:
       node: ^14.15.0 || ^16.10.0 || >=18.0.0
@@ -3010,10 +3010,10 @@ packages:
       rollup: ^1.20.0||^2.0.0
     resolution:
       integrity: sha512-GksZ6pr6TpIjHm8h9lSQ8pi8BE9VeubNT0OMJ3B5uZJ8pz73NPiqOtCog/x2/QzM1ENChPKxMDhiQuRHsqc+lg==
-  /@sinclair/typebox/0.24.41:
+  /@sinclair/typebox/0.24.42:
     dev: false
     resolution:
-      integrity: sha512-TJCgQurls4FipFvHeC+gfAzb+GGstL0TDwYJKQVtTeSvJIznWzP7g3bAd5gEBlr8+bIxqnWS9VGVWREDhmE8jA==
+      integrity: sha512-d+2AtrHGyWek2u2ITF0lHRIv6Tt7X0dEHW+0rP+5aDCEjC3fiN2RBjrLD0yU0at52BcZbRGxLbAtXiR0hFCjYw==
   /@sinonjs/commons/1.8.3:
     dependencies:
       type-detect: 4.0.8
@@ -4171,7 +4171,7 @@ packages:
   /autoprefixer/9.8.8:
     dependencies:
       browserslist: 4.21.4
-      caniuse-lite: 1.0.30001402
+      caniuse-lite: 1.0.30001408
       normalize-range: 0.1.2
       num2fraction: 1.2.2
       picocolors: 0.2.1
@@ -4351,7 +4351,7 @@ packages:
     dependencies:
       '@babel/core': 7.12.3
       '@babel/helper-define-polyfill-provider': 0.3.3_@babel+core@7.12.3
-      core-js-compat: 3.25.1
+      core-js-compat: 3.25.2
     dev: true
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -4361,7 +4361,7 @@ packages:
     dependencies:
       '@babel/core': 7.19.1
       '@babel/helper-define-polyfill-provider': 0.3.3_@babel+core@7.19.1
-      core-js-compat: 3.25.1
+      core-js-compat: 3.25.2
     dev: true
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -4731,8 +4731,8 @@ packages:
       integrity: sha512-Z942RysHXmJrhqk88FmKBVq/v5tqmSkDz7p54G/MGyjMnCFFnC79XWNbg+Vta8W6Wb2qtSZTSxIGkJrRpCFEiA==
   /browserslist/4.14.2:
     dependencies:
-      caniuse-lite: 1.0.30001402
-      electron-to-chromium: 1.4.253
+      caniuse-lite: 1.0.30001408
+      electron-to-chromium: 1.4.256
       escalade: 3.1.1
       node-releases: 1.1.77
     dev: true
@@ -4743,8 +4743,8 @@ packages:
       integrity: sha512-HI4lPveGKUR0x2StIz+2FXfDk9SfVMrxn6PLh1JeGUwcuoDkdKZebWiyLRJ68iIPDpMI4JLVDf7S7XzslgWOhw==
   /browserslist/4.21.4:
     dependencies:
-      caniuse-lite: 1.0.30001402
-      electron-to-chromium: 1.4.253
+      caniuse-lite: 1.0.30001408
+      electron-to-chromium: 1.4.256
       node-releases: 2.0.6
       update-browserslist-db: 1.0.9_browserslist@4.21.4
     dev: true
@@ -4929,16 +4929,16 @@ packages:
   /caniuse-api/3.0.0:
     dependencies:
       browserslist: 4.21.4
-      caniuse-lite: 1.0.30001402
+      caniuse-lite: 1.0.30001408
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
     dev: true
     resolution:
       integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==
-  /caniuse-lite/1.0.30001402:
+  /caniuse-lite/1.0.30001408:
     dev: true
     resolution:
-      integrity: sha512-Mx4MlhXO5NwuvXGgVb+hg65HZ+bhUYsz8QtDGDo2QmaJS2GBX47Xfi2koL86lc8K+l+htXeTEB/Aeqvezoo6Ew==
+      integrity: sha512-DdUCktgMSM+1ndk9EFMZcavsGszV7zxV9O7MtOHniTa/iyAIwJCF0dFVBdU9SijJbfh29hC9bCs07wu8pjnGJQ==
   /capture-exit/2.0.0:
     dependencies:
       rsvp: 4.8.5
@@ -5440,27 +5440,27 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-XgZ0pFcakEUlbwQEVNg3+QAis1FyTL3Qel9FYy8pSkQqoG3PNoT0bOCQtOXcOkur21r2Eq2kI+IE+gsmAEVlYw==
-  /core-js-compat/3.25.1:
+  /core-js-compat/3.25.2:
     dependencies:
       browserslist: 4.21.4
     dev: true
     resolution:
-      integrity: sha512-pOHS7O0i8Qt4zlPW/eIFjwp+NrTPx+wTL0ctgI2fHn31sZOq89rDsmtc/A2vAX7r6shl+bmVI+678He46jgBlw==
-  /core-js-pure/3.25.1:
+      integrity: sha512-TxfyECD4smdn3/CjWxczVtJqVLEEC2up7/82t7vC0AzNogr+4nQ8vyF7abxAuTXWvjTClSbvGhU0RgqA4ToQaQ==
+  /core-js-pure/3.25.2:
     requiresBuild: true
     resolution:
-      integrity: sha512-7Fr74bliUDdeJCBMxkkIuQ4xfxn/SwrVg+HkJUAoNEXVqYLv55l6Af0dJ5Lq2YBUW9yKqSkLXaS5SYPK6MGa/A==
+      integrity: sha512-ItD7YpW1cUB4jaqFLZXe1AXkyqIxz6GqPnsDV4uF4hVcWh/WAGIqSqw5p0/WdsILM0Xht9s3Koyw05R3K6RtiA==
   /core-js/2.6.12:
     deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
     dev: true
     requiresBuild: true
     resolution:
       integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
-  /core-js/3.25.1:
+  /core-js/3.25.2:
     dev: true
     requiresBuild: true
     resolution:
-      integrity: sha512-sr0FY4lnO1hkQ4gLDr24K0DGnweGO1QwSj5BpfQjpSJPdqWalja4cTps29Y/PJVG/P7FYlPDkH3hO+Tr0CvDgQ==
+      integrity: sha512-YB4IAT1bjEfxTJ1XYy11hJAKskO+qmhuDBM8/guIfMz4JvdsAQAqvyb97zXX7JgSrfPLG5mRGFWJwJD39ruq2A==
   /core-util-is/1.0.2:
     dev: false
     resolution:
@@ -5936,10 +5936,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-z2S+W9X73hAUUki+N+9Za2lBlun89zigOyGrsax+KUQ6wKW4ZoWpEYBkGhQjwAjjDCkWxhY0VKEhk8wzY7F5cA==
-  /decimal.js/10.4.0:
+  /decimal.js/10.4.1:
     dev: true
     resolution:
-      integrity: sha512-Nv6ENEzyPQ6AItkGwLE2PGKinZZ9g59vSh2BeH6NqPu0OTKZ5ruJsVqh/orbAnqXc9pBbgXAIrc2EyaCj8NpGg==
+      integrity: sha512-F29o+vci4DodHYT9UrR5IEbfBw9pE5eSapIJdTqXK5+6hq+t8VRxwQyKlW2i+KDKFkkJQRvFyI/QXD83h8LyQw==
   /decode-uri-component/0.2.0:
     engines:
       node: '>=0.10'
@@ -6297,10 +6297,10 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-7vmuyh5+kuUyJKePhQfRQBhXV5Ce+RnaeeQArKu1EAMpL3WbgMt5WG6uQZpEVvYSSsxMXRKOewtDk9RaTKXRlA==
-  /electron-to-chromium/1.4.253:
+  /electron-to-chromium/1.4.256:
     dev: true
     resolution:
-      integrity: sha512-1pezJ2E1UyBTGbA7fUlHdPSXQw1k+82VhTFLG5G0AUqLGvsZqFzleOblceqegZzxYX4kC7hGEEdzIQI9RZ1Cuw==
+      integrity: sha512-x+JnqyluoJv8I0U9gVe+Sk2st8vF0CzMt78SXxuoWCooLLY2k5VerIBdpvG7ql6GKI4dzNnPjmqgDJ76EdaAKw==
   /elliptic/6.5.4:
     dependencies:
       bn.js: 4.12.0
@@ -9145,7 +9145,7 @@ packages:
       jest-pnp-resolver: 1.2.2_jest-resolve@26.6.0
       jest-util: 26.6.2
       read-pkg-up: 7.0.1
-      resolve: 1.22.1
+      resolve: 1.18.1
       slash: 3.0.0
     dev: true
     engines:
@@ -9417,7 +9417,7 @@ packages:
       cssom: 0.4.4
       cssstyle: 2.3.0
       data-urls: 2.0.0
-      decimal.js: 10.4.0
+      decimal.js: 10.4.1
       domexception: 2.0.1
       escodegen: 2.0.0
       form-data: 3.0.1
@@ -11646,7 +11646,7 @@ packages:
     dependencies:
       autoprefixer: 9.8.8
       browserslist: 4.21.4
-      caniuse-lite: 1.0.30001402
+      caniuse-lite: 1.0.30001408
       css-blank-pseudo: 0.1.4
       css-has-pseudo: 0.10.0
       css-prefers-color-scheme: 3.1.1
@@ -12124,7 +12124,7 @@ packages:
       integrity: sha512-qqJBtEyVgS0ZmPGdCFPWJ3FreoqvG4MVQln/kCgF7Olq95IbOp0/BWyMwbdtn4VTvkM8Y7khCQ2Xgk/tcrCXig==
   /react-app-polyfill/2.0.0:
     dependencies:
-      core-js: 3.25.1
+      core-js: 3.25.2
       object-assign: 4.1.1
       promise: 8.2.0
       raf: 3.4.1

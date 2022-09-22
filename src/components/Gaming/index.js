@@ -20,6 +20,7 @@ import {
   TrendingBanner,
   TrendingBannerIconBox,
   TrendingBannerHeading,
+  TrendingContainer,
 } from '../Trending/styledcomponents'
 import VideoItem from '../VideoItem'
 
@@ -108,7 +109,7 @@ class Gaming extends Component {
           const {isDark} = value
 
           return (
-            <GameContainer data-testid="gaming" isDark={isDark}>
+            <TrendingContainer data-testid="gaming" isDark={isDark}>
               <ResponsiveGameContainer>
                 <Header />
                 <GamingBody>
@@ -126,7 +127,7 @@ class Gaming extends Component {
                   </GamingContent>
                 </GamingBody>
               </ResponsiveGameContainer>
-            </GameContainer>
+            </TrendingContainer>
           )
         }}
       </NxtWatchContext.Consumer>

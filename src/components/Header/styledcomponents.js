@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Popup from 'reactjs-popup'
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -65,4 +66,45 @@ export const MenuMobileList = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+`
+export const LogoutPop = styled(Popup)`
+  height: 100vh;
+  width: 100vw;
+`
+export const LogoutContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+`
+export const LogoutBox = styled.div`
+  background-color: white;
+  width: 90%;
+  text-align: center;
+  border-radius: 10px;
+  background-color: ${props => (props.isDark ? '#181818' : '')};
+  padding: 20px;
+  @media screen and (min-width: 768px) {
+    width: 80%;
+    max-width: 400px;
+  }
+`
+export const LogoutHeading = styled.p`
+  font-family: 'Roboto';
+  color: ${props => (props.isDark ? 'white' : '#4f46e5')};
+  font-weight: 500;
+`
+export const LogoutBtnContainer = styled.div``
+export const LogoutBtns = styled.button`
+  font-family: 'Roboto';
+  border: ${props => (props.conform ? 'none' : 'inline')};
+  border-color: ${props => (props.conform ? 'none' : '#7e858e')};
+  background-color: ${props => (props.conform ? '#3b82f6' : 'transparent')};
+  color: ${props => (props.conform ? 'white' : '#7e858e')};
+  height: 35px;
+  width: 90px;
+  margin: 10px;
 `
