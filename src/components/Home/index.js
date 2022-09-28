@@ -7,7 +7,7 @@ import LoaderComponent from '../LoaderContainer'
 import SideBar from '../SideBar/index'
 import Header from '../Header'
 import VideoItem from '../VideoItem'
-
+import FailureComponent from '../FailureView/index'
 import NxtWatchContext from '../../context/NxtContext'
 import {
   FailureButton,
@@ -128,7 +128,7 @@ class Home extends Component {
           : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
         return (
           <FailureContainer>
-            {!isDark && <FailureImage src={imgSrc} alt="failure view" />}
+            <FailureImage src={imgSrc} alt="failure view" />
             <FailureHeading isDark={isDark}>
               Oops! Something Went Wrong
             </FailureHeading>
@@ -172,9 +172,9 @@ class Home extends Component {
             <FailureDescription>
               Try different key words or remove search filter
             </FailureDescription>
-            <FailureHomeButton type="button" onClick={this.getHomeVideos}>
+            <RetryButton type="button" onClick={this.getHomeVideos}>
               Retry
-            </FailureHomeButton>
+            </RetryButton>
           </FailureContainer>
         )
       }}
@@ -213,12 +213,7 @@ class Home extends Component {
                           <BannerMatter>
                             Buy Nxt Watch Premium prepaid plans with UPI
                           </BannerMatter>
-                          <BannerButton
-                            type="button"
-                            data-testid="searchButton"
-                          >
-                            GET IT NOW
-                          </BannerButton>
+                          <BannerButton type="button">GET IT NOW</BannerButton>
                         </BannerContent>
                         <BannerCloseBtn
                           type="button"
